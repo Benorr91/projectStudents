@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClInclude Include="globalHeader.h" />
     <ClInclude Include="Qeury_Header.h" />
-    <ClInclude Include="studentError.h" />
     <ClInclude Include="studentHeader.h" />
     <ClInclude Include="validationHeader.h" />
   </ItemGroup>
@@ -138,7 +137,6 @@
     <ClCompile Include="mainStudent.c" />
     <ClCompile Include="query.c" />
     <ClCompile Include="student.c" />
-    <ClCompile Include="studentError.c" />
     <ClCompile Include="validation.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

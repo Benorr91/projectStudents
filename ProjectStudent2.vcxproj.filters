@@ -24,9 +24,6 @@
     <ClCompile Include="student.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="studentError.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="validation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,9 +33,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globalHeader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="studentError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="studentHeader.h">
