@@ -151,27 +151,60 @@ student_detailes* read_from_file(student_detailes** head_err) {
         toUpperCase(line);
         course =checkCours(line);
         student_detailes* new_student = init_student_from_file(line,&flag);
-        if_exsit=search_Student(head, new_student, course);
+        if_exsit=search_Student(head, &new_student, course);
         if (flag == 0) {
         
             insert_to_sort_list(&head_err_temp, new_student);
+       
         }
         else if (if_exsit==0) {
        
              insert_to_sort_list(&head, new_student);
-  
+          
         }
-
+      
         free(line);
 
     }
-
+    free(line);
     *head_err = head_err_temp;
     return head;
 
 
 }
 
+
+void delete_student(student_detailes* head_err, int n) {
+    student_detailes* ptr = head_err;
+    student_detailes* prev = head_err;
+    for (size_t i = 0; i < n; i++,ptr=ptr->next)
+    {
+        prev = ptr;
+    }
+    prev->next = ptr->next;
+    ptr->next = NULL;
+    free_student(&ptr);
+}
+
+
+
+void search_StudentErr(student_detailes* head_err, student_detailes* Student) {
+    student_detailes* ptr = head_err;
+
+    while (ptr)
+    {
+
+        if ((strcmp(ptr->ID, Student->ID) == 0)) {
+            ptr->fix = 1;
+
+            //return ;
+        }
+
+        ptr = ptr->next;
+
+    }
+  
+}
 
 int search_Student(student_detailes* head, student_detailes* Student,int course) {
 
@@ -183,6 +216,7 @@ int search_Student(student_detailes* head, student_detailes* Student,int course)
 
         if ((strcmp(ptr->ID, Student->ID) == 0) ) {
             update_Student(ptr,Student,course);
+            free_student(&Student);
             return 1;
         }
 
@@ -213,9 +247,6 @@ void update_Student(student_detailes* Student, student_detailes* new_Student, in
     strcpy(Student->last_name, new_Student->last_name);
     strcpy(Student->first_name, new_Student->first_name);
     calc_avg(Student);
-
-    
-
 }
 
 
@@ -285,19 +316,21 @@ void free_list(student_detailes** head) {
 
 }
 void printStudent(student_detailes* Curr) {
-    printf("%-30s %-30s %10s %10d %20d %20d %15.2lf \n",Curr->last_name,Curr->first_name ,Curr->ID, Curr->C_language, Curr->Computer_Networks, Curr->CS_Fundamentals, Curr->avg);
+    printf(" %-30s %-30s %10s %10d %20d %20d %15.2lf \n",Curr->last_name,Curr->first_name ,Curr->ID, Curr->C_language, Curr->Computer_Networks, Curr->CS_Fundamentals, Curr->avg);
 }
 void printStudentErr(student_detailes* Curr) {
     if (Curr->fix == 0) {
-        printf("%-30s %-30s %10s %10d %20d %20d %15.2lf            yes\n\n", Curr->last_name, Curr->first_name,  Curr->ID, Curr->C_language, Curr->Computer_Networks, Curr->CS_Fundamentals, Curr->avg);
+        printf(" %-30s %-30s %10s %10d %20d %20d %15.2lf            yes\n\n", Curr->last_name, Curr->first_name,  Curr->ID, Curr->C_language, Curr->Computer_Networks, Curr->CS_Fundamentals, Curr->avg);
         printf("Error->%s\n\n", Curr->error);
 
     }
 }
 void printlist(student_detailes* head, void (*print_func)(student_detailes* Curr)) {
     print_Table_Title();
+    int i = 0;
     while (head)
     {
+        printf("%d.", i++);
         print_func(head);
         head = head->next;
     }

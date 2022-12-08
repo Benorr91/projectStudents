@@ -11,8 +11,7 @@ int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	student_detailes* head = NULL;
 	student_detailes* headError = NULL;
-	int a = 100;
-	int b = 0;
+
 	int flag = 0;
 	printHeader();
 	head = read_from_file(&headError);
@@ -204,6 +203,7 @@ int main() {
 					free_student(&new_student);
 					continue;
 				}
+				//search_StudentErr(headError, new_student);
 				if_exsit = search_Student(head, new_student, cours);
 				if (if_exsit == 0) {
 					insert_to_sort_list(&head, new_student);
@@ -211,14 +211,20 @@ int main() {
 					printStudent(new_student);
 				}
 				else {
-					printf("Student %s  %s %s Updated\n",new_student->first_name,new_student->last_name,new_student->ID);
+					printf("Student Updated\n");
 				}
 			
 
 			break;
+			//delete from err
+		case 4: 
+			printf("\n\nPlease Enter of the index you want to delete?\n");
+			int num;
+			if(scanf("%d", &num))
+			 delete_student(headError, num);
+			 getchar();
 
-
-
+			break;
 		case -2:
 			printf("Bye Bye ,see you next time\n");
 			res = -1;

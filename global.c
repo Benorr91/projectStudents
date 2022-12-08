@@ -34,7 +34,8 @@ void printHeader() {
 
     printf("Welcome To Student's DB\n");
     printf("You can get information about a student by set and select queries\n");
-    printf("You can print your student list if you Enter \"print\" and the Error list with \"print error\"\n");
+    printf("You can print your student list if you Enter \"print\" and the Error list with \"print err\"\n");
+    printf("You can delete student from the error list if you Enter \"delete\" and then give the index you want to delete \n");
     printf("Enter \"quit\" for exit! \n");
     printf("Student with -1 in is grade means that he didn't tested in this Cours\n");
     printf("For Example select average>50 OR set first name =Avi(Only letters!),  last name= Yakov (Only letters!), ID= 958478321 (9 numbers only! ), C language= 95 ( Between 0-100 ) \n\n");
@@ -138,6 +139,11 @@ int print_menu(char **inputS) {
      
         return 3;
     }
+    if (strstr(*inputS, "DELETE")) {
+
+
+        return 4;
+    }
   
     return -3;
 
@@ -162,6 +168,6 @@ int cmpFunAvg(void* val1, void* val2) {
 }
 
 void print_Table_Title() {
-    printf("Last Name                      First Name                     ID               C Language    Computer Networks   CS Fundamentals     Average         Error\n");
-    printf("---------------------------    ---------------------------    -----------      ----------    -----------------   ----------------    ------------    ------------- \n\n\n");
+    printf("i  Last Name                      First Name                     ID               C Language    Computer Networks   CS Fundamentals     Average         Error\n");
+    printf("-  ---------------------------    ---------------------------    -----------      ----------    -----------------   ----------------    ------------    ------------- \n\n\n");
 }

@@ -55,7 +55,7 @@ int check_input_valid(char* str) {
 			return 1;
 		}
 	}
-	else if (strstr(str, "PRINT") || strstr(str, "PRINT ERR") || strstr(str, "QUIT")) {
+	else if (strstr(str, "PRINT") || strstr(str, "PRINT ERR") || strstr(str, "QUIT") || strstr(str, "DELETE")) {
 		return 1;
 	}
 	
