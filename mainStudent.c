@@ -30,14 +30,14 @@ int main() {
 	char* input = NULL;
 	char* valueCopmare = NULL;
 	int operatorSign = 0;
-	int cours = 0;
+	int courses = 0;
 	while (res != -1)
 	{
 		res = print_menu(&input);
-		cours = checkCours(input);
+		courses = checkCours(input);
 		switch (res)
 		{
-		case 0:
+		case PRINT_LIST:
 			if (head ) {
 
 
@@ -47,7 +47,7 @@ int main() {
 			else
 				printf("Empty List\n");
 			break;
-		case 1:
+		case PRINT_ERROR:
 			if (headError) {
 
 				printlist(head, printStudent);
@@ -57,13 +57,13 @@ int main() {
 			}
 			break;
 
-		case 2:
+		case SELECT:
 			if (head ) {
 
 				print_Table_Title();
 				switch (select_Query(input, &valueCopmare, &operatorSign))
 				{//first name
-				case 0:
+				case first_name:
 					switch (operatorSign)
 					{
 					case 0:
@@ -88,7 +88,7 @@ int main() {
 
 					break;
 					//last name
-				case 1:
+				case last_name:
 					switch (operatorSign)
 					{
 					case 0:
@@ -112,7 +112,7 @@ int main() {
 					}
 					break;
 					//ID
-				case 2:
+				case ID:
 					switch (operatorSign)
 					{
 					case 0:
@@ -137,24 +137,24 @@ int main() {
 
 					break;
 					//cours
-				case 3:
+				case course:
 
 					switch (operatorSign)
 					{
 					case 0:
-						serchStudentByCourseNot(head, cours, valueCopmare, cmpFunNum);
+						serchStudentByCourseNot(head, courses, valueCopmare, cmpFunNum);
 						free(valueCopmare);
 						break;
 					case 1:
-						serchStudentByCourseEqule(head, cours, valueCopmare, cmpFunNum);
+						serchStudentByCourseEqule(head, courses, valueCopmare, cmpFunNum);
 						free(valueCopmare);
 						break;
 					case 2:
-						serchStudentByCourseBigger(head, cours, valueCopmare, cmpFunNum);
+						serchStudentByCourseBigger(head, courses, valueCopmare, cmpFunNum);
 						free(valueCopmare);
 						break;
 					case 3:
-						serchStudentByCourseSmaller(head, cours, valueCopmare, cmpFunNum);
+						serchStudentByCourseSmaller(head, courses, valueCopmare, cmpFunNum);
 						free(valueCopmare);
 						break;
 					default:
@@ -163,23 +163,23 @@ int main() {
 
 					break;
 					//avg	
-				case 4:
+				case avg:
 					switch (operatorSign)
 					{
 					case 0:
-						serchStudentByAvgNot(head, cours, valueCopmare, cmpFunNum);
+						serchStudentByAvgNot(head, courses, valueCopmare, cmpFunNum);
 						free(valueCopmare);
 						break;
 					case 1:
-						serchStudentByAvgEqule(head, cours, valueCopmare, cmpFunAvg);
+						serchStudentByAvgEqule(head, courses, valueCopmare, cmpFunAvg);
 						free(valueCopmare);
 						break;
 					case 2:
-						serchStudentByAvgBigger(head, cours, valueCopmare, cmpFunNum);
+						serchStudentByAvgBigger(head, courses, valueCopmare, cmpFunNum);
 						free(valueCopmare);
 						break;
 					case 3:
-						serchStudentByAvgSmaller(head, cours, valueCopmare, cmpFunNum);
+						serchStudentByAvgSmaller(head, courses, valueCopmare, cmpFunNum);
 						free(valueCopmare);
 						break;
 					default:
@@ -190,7 +190,7 @@ int main() {
 
 			}
 			break;
-		case 3:
+		case SET:
 
 			
 				new_student = set_qurey(input, &flag);
@@ -204,7 +204,7 @@ int main() {
 					continue;
 				}
 				//search_StudentErr(headError, new_student);
-				if_exsit = search_Student(head, new_student, cours);
+				if_exsit = search_Student(head, new_student, courses);
 				if (if_exsit == 0) {
 					insert_to_sort_list(&head, new_student);
 					printf("new Student Added\n");
@@ -217,7 +217,7 @@ int main() {
 
 			break;
 			//delete from err
-		case 4: 
+		case DELETE:
 			printf("\n\nPlease Enter of the index you want to delete?\n");
 			int num;
 			if(scanf("%d", &num))
@@ -225,7 +225,7 @@ int main() {
 			 getchar();
 
 			break;
-		case -2:
+		case QUIT:
 			printf("Bye Bye ,see you next time\n");
 			res = -1;
 			break;

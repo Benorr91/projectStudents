@@ -17,6 +17,23 @@ enum COURSES {
 
 };
 
+enum CASE {
+	PRINT_LIST = 0,
+	PRINT_ERROR = 1,
+	SELECT = 2,
+	SET = 3,
+	DELETE = 4,
+	QUIT=-2
+
+};
+enum STUDENT_ARG {
+	first_name = 0,
+	last_name = 1,
+	ID = 2,
+	course = 3,
+	avg = 4,
+};
+
 //typedef enum
 //{
 //	true = 1,
